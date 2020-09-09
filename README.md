@@ -1,4 +1,5 @@
 # JYQrepository
+整个项目详细流程：
 
 estore项目：
 1、需求分析：
