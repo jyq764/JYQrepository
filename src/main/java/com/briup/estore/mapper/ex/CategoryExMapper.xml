@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.estore.mapper.ex.CategoryExMapper">
+  <resultMap id="BaseResultMap" type="com.briup.estore.bean.ex.CategoryEx">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <collection property="categories" column="id" select="selectSecondCategory"></collection>
+  </resultMap>
+  
+  <select id="findAllCategoryEx" resultMap="BaseResultMap">
+  	select * from es_category
+  	where parent_id = 0
+  </select>
+  <select id="selectSecondCategory" parameterType="int" resultType="com.briup.estore.bean.Category">
+  	select * from es_category
+  	where parent_id = #{id}
+  </select>
+</mapper>
